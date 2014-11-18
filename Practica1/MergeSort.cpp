@@ -5,7 +5,6 @@
 void MergeSort::ordenar(int t[], int ini, int fin) {
     int *b = new int[fin - ini];
     mergesort(t,b,ini,fin-1);
-   // delete [] t;
     t = b;
 }
 

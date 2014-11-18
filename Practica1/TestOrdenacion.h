@@ -13,6 +13,16 @@ using namespace std;
 #include <vector>
 #include "Ordenacion.h"
 
+struct Tiempos {
+    int elementos;
+    double tiempo;
+    Tiempos(){}
+    Tiempos(int elem, double t) {
+        elementos = elem;
+        tiempo = t;
+    }
+};
+
 struct tOrdenacion {
     int num_pruebas; // Numero de pruebas para un método de ordenacion
     string nombre_metodo; // Nombre del metodo de ordenacion
@@ -21,8 +31,15 @@ struct tOrdenacion {
 
 class TestOrdenacion {
     vector<tOrdenacion> testMetodos; // contiene todos los métodos a estudiar
+    int num_pruebas_al_comparar;
     
     double ordenarArray(int v[],int size,int metodo);
+    
+    void GuardarEnArchivo(Tiempos *T, int size, int metodo);
+    void GenerarGrafica(Tiempos *T, int size, int metodo);
+
+    void GuardarEnArchivo(Tiempos **T, int size, vector<int> metodos);
+    void GenerarGrafica(Tiempos **T, int size, vector<int> metodos);
 public:
     TestOrdenacion(); //añade los métodos de ordenacion a probar al vector testMetodos
     ~TestOrdenacion();
@@ -38,6 +55,9 @@ public:
     //Permite las opciones de crear el fichero de datos y la gráfica correspondiente.
     void estudiarMetodo(int m); // el método a estudiar es testMetodos[m-1]
     
+    vector<tOrdenacion> getTestMetodos() {
+        return testMetodos;
+    }
     
 };
 
