@@ -4,7 +4,7 @@ Programa que visualiza por consola el resultado de operaciones básicas en un co
 #include <iostream>
 #include <cstdlib>
 using namespace std;
-#include "conjuntoInt.h"
+#include "ConjuntoInt.h"
 void menu(void);
 ///////////// Programa principal ////////////
 

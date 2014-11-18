@@ -35,8 +35,14 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
-	${OBJECTDIR}/EjemploConjunto.o \
-	${OBJECTDIR}/conjuntoInt.o
+	${OBJECTDIR}/Burbuja.o \
+	${OBJECTDIR}/ConjuntoInt.o \
+	${OBJECTDIR}/Insercion.o \
+	${OBJECTDIR}/MergeSort.o \
+	${OBJECTDIR}/QuickSort.o \
+	${OBJECTDIR}/Shell.o \
+	${OBJECTDIR}/TestOrdenacion.o \
+	${OBJECTDIR}/main.o
 
 
 # C Compiler Flags
@@ -63,15 +69,45 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/practica1: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/practica1 ${OBJECTFILES} ${LDLIBSOPTIONS}
 
-${OBJECTDIR}/EjemploConjunto.o: EjemploConjunto.cpp 
+${OBJECTDIR}/Burbuja.o: Burbuja.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/EjemploConjunto.o EjemploConjunto.cpp
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Burbuja.o Burbuja.cpp
 
-${OBJECTDIR}/conjuntoInt.o: conjuntoInt.cpp 
+${OBJECTDIR}/ConjuntoInt.o: ConjuntoInt.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/conjuntoInt.o conjuntoInt.cpp
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ConjuntoInt.o ConjuntoInt.cpp
+
+${OBJECTDIR}/Insercion.o: Insercion.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Insercion.o Insercion.cpp
+
+${OBJECTDIR}/MergeSort.o: MergeSort.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/MergeSort.o MergeSort.cpp
+
+${OBJECTDIR}/QuickSort.o: QuickSort.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/QuickSort.o QuickSort.cpp
+
+${OBJECTDIR}/Shell.o: Shell.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Shell.o Shell.cpp
+
+${OBJECTDIR}/TestOrdenacion.o: TestOrdenacion.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/TestOrdenacion.o TestOrdenacion.cpp
+
+${OBJECTDIR}/main.o: main.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.cpp
 
 # Subprojects
 .build-subprojects:

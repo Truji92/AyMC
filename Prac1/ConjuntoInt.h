@@ -1,13 +1,15 @@
 // Clase conjunto de enteros con tama�o máximo limitado.
-#define MAXIMO 5  // TAMAÑO MÁXIMO 5
 
 ///////////// Declaración de la clase conjuntoInt ////////////
 
-class conjuntoInt {
+class ConjuntoInt {
 private:
     int tamano;
-    int datos[MAXIMO];
+    int nelementos;
+    int *datos;
 public:
+    ConjuntoInt (int max= 0); //Constructor, por defecto tamaño 0;
+    ~ConjuntoInt (); //Destructor, liberar memoria;
     void vaciar();
     void insertar(int n);
     bool miembro(int n);
@@ -15,5 +17,7 @@ public:
     void ordena();
     void escribe(int tam);
     void escribe();
-    void clonar(conjuntoInt &c);
+    void clonar(ConjuntoInt &c);
+    void generaVector (int tam);
+    int* getDatos();
 };

@@ -6,6 +6,15 @@
     </data>
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/home/alejandro/Dropbox/Tercero%20Informatica/Algorítmica%20y%20Modelos%20de%20Computación/AyMC/Practica1/Ordenacion.h</file>
+            <file>file:/home/alejandro/Dropbox/Tercero%20Informatica/Algorítmica%20y%20Modelos%20de%20Computación/AyMC/Practica1/Burbuja.h</file>
+            <file>file:/home/alejandro/Dropbox/Tercero%20Informatica/Algorítmica%20y%20Modelos%20de%20Computación/AyMC/Practica1/Insercion.h</file>
+            <file>file:/home/alejandro/Dropbox/Tercero%20Informatica/Algorítmica%20y%20Modelos%20de%20Computación/AyMC/Practica1/Insercion.cpp</file>
+            <file>file:/home/alejandro/Dropbox/Tercero%20Informatica/Algorítmica%20y%20Modelos%20de%20Computación/AyMC/Practica1/MergeSort.h</file>
+            <file>file:/home/alejandro/Dropbox/Tercero%20Informatica/Algorítmica%20y%20Modelos%20de%20Computación/AyMC/Practica1/QuickSort.h</file>
+            <file>file:/home/alejandro/Dropbox/Tercero%20Informatica/Algorítmica%20y%20Modelos%20de%20Computación/AyMC/Practica1/Burbuja.cpp</file>
+            <file>file:/home/alejandro/Dropbox/Tercero%20Informatica/Algorítmica%20y%20Modelos%20de%20Computación/AyMC/Practica1/Shell.h</file>
+        </group>
     </open-files>
 </project-private>
