@@ -20,7 +20,7 @@ using namespace std;
 void pause() {
 #ifdef __linux__
     cin.clear();
-    cout << "\n ## Pulsa una tecla para continuar ## \n";
+    cout << "\n ## Pulsa enter para continuar ## \n";
     cin.get();
     cin.get();
 #else
@@ -30,7 +30,7 @@ void pause() {
 
 void dibujar(string archivo){
 #ifdef __linux__
-    string comando = "gnuplot ";
+    string comando = "gnuplot -p ";
     comando.append(archivo);
     system(comando.c_str());
 #else
@@ -214,7 +214,7 @@ void TestOrdenacion::GenerarGrafica(Tiempos *T, int size, int metodo) {
         if (metodo == 2 || metodo == 3)  //QuickSort y MergeSort
             salida << "y(x)=a+b*x+c*x*log(x)/log(2)\n" << "fit y(x) \"" << ficheroDatos<< "\" using 1:2 via a,b,c\n";
         if (metodo == 0 || metodo == 1 || metodo == 4) //insercion burbuja y shell
-            salida << "y(x)=a+b*x+c*x*x\n"<< "fit y(x) \""<<ficheroDatos<< "\" using 1:2 via a,b\n";
+            salida << "y(x)=a+b*x+c*x*x\n"<< "fit y(x) \""<<ficheroDatos<< "\" using 1:2 via a,b,c\n";
 
 
         salida << "plot \"" << ficheroDatos << "\" using 1:2 title\""<<testMetodos[metodo].nombre_metodo<<"_real\", y(x) title \"" << testMetodos[metodo].nombre_metodo << "_teorico\"\n";

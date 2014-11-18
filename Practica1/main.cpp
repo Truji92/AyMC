@@ -64,9 +64,10 @@ void subRutinaComparacion(TestOrdenacion &test){
                 cout << "\n\t\t Introduzca metodo" << i << " (o 0 para terminar): ";
             cin >> aux;
         } while (aux == 0 && i <= 2);
-        if (aux != 0)
+        if (aux <= 5 && aux >= 1) {
             metodos.push_back(aux-1);
-        i++;
+            i++;
+        }
     } while (aux != 0);
 
     test.compararMetodos(metodos);
