@@ -37,6 +37,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 OBJECTFILES= \
 	${OBJECTDIR}/Burbuja.o \
 	${OBJECTDIR}/ConjuntoInt.o \
+	${OBJECTDIR}/FicherosYGraficas.o \
 	${OBJECTDIR}/Insercion.o \
 	${OBJECTDIR}/MergeSort.o \
 	${OBJECTDIR}/QuickSort.o \
@@ -78,6 +79,11 @@ ${OBJECTDIR}/ConjuntoInt.o: ConjuntoInt.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ConjuntoInt.o ConjuntoInt.cpp
+
+${OBJECTDIR}/FicherosYGraficas.o: FicherosYGraficas.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/FicherosYGraficas.o FicherosYGraficas.cpp
 
 ${OBJECTDIR}/Insercion.o: Insercion.cpp 
 	${MKDIR} -p ${OBJECTDIR}

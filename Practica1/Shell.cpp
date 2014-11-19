@@ -3,7 +3,7 @@
 using namespace std;
 
 void Shell::ordenar(int t[], int ini, int fin) {
-    fin--; //Para facilitar la llamada (todos igual)
+    fin--; 
     int i, j, inc, temp, TAM = fin + 1;
     for (inc = TAM / 2; inc > 0; inc /= 2) {
         for (i = inc; i < TAM; i++) {

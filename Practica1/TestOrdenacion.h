@@ -13,7 +13,11 @@ using namespace std;
 #include <vector>
 #include "Ordenacion.h"
 
-struct Tiempos {
+/**
+ * Struct utilizado para facilitar el manejo de medidas de 
+ * tiempo para cada cantidad de elementos
+ */
+struct Tiempos { 
     int elementos;
     double tiempo;
     Tiempos(){}
@@ -34,27 +38,36 @@ class TestOrdenacion {
     int num_pruebas_al_comparar;
     
     double ordenarArray(int v[],int size,int metodo);
-    
-    void GuardarEnArchivo(Tiempos *T, int size, int metodo);
-    void GenerarGrafica(Tiempos *T, int size, int metodo);
-
-    void GuardarEnArchivo(Tiempos **T, int size, vector<int> metodos);
-    void GenerarGrafica(Tiempos **T, int size, vector<int> metodos);
 public:
-    TestOrdenacion(); //añade los métodos de ordenacion a probar al vector testMetodos
+    /**
+     * Añade los métodos de ordenacion a probar al vector testMetodos
+     */
+    TestOrdenacion(); 
     ~TestOrdenacion();
-
-    void comprobarMetodos(); // Comprueba que los metodos de ordenacion funcionan bien
-
-    //Compara todos los metodos de ordenacion entre si. 
-    //Permite las opciones de crear el fichero de datos y la gráfica correspondiente.
-    //met: indice de los métodos de testMetodos a comparar
-    void compararMetodos(vector<int> met);
-
-    //Estudia un metodo de ordenacion concreto. 
-    //Permite las opciones de crear el fichero de datos y la gráfica correspondiente.
-    void estudiarMetodo(int m); // el método a estudiar es testMetodos[m-1]
     
+    /**
+     * Comprueba que los metodos de ordenacion funcionan bien
+     */
+    void comprobarMetodos(); 
+
+    /**
+     * Compara todos los metodos de ordenacion entre si. 
+     * Permite las opciones de crear el fichero de datos y la gráfica correspondiente.
+     * met: indice de los métodos de testMetodos a comparar
+     */
+    void compararMetodos(vector<int> met);
+    
+    /**
+     * Estudia un metodo de ordenacion concreto. 
+     * Permite las opciones de crear el fichero de datos y la gráfica correspondiente.
+     */
+    void estudiarMetodo(int m); 
+    
+    /**
+     * Facilita la creación de los menús permitiendo acceder
+     * a los nombres de algoritmos fuera de esta clase
+     * @return vecto con los metodos a analizar
+     */
     vector<tOrdenacion> getTestMetodos() {
         return testMetodos;
     }

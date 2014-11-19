@@ -15,7 +15,6 @@ private:
     int partition(int *t, int p, int r);
     void quicksort(int t[], int ini, int fin);
 public:
-    QuickSort(){}
     void ordenar(int t[], int ini, int fin);
 };
 

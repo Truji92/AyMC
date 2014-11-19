@@ -11,7 +11,6 @@
 
 class Insercion : public Ordenacion {
 public:
-    Insercion(){}
     void ordenar(int t[], int ini, int fin);
 };
 

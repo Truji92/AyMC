@@ -16,7 +16,7 @@ int Menu() {
     int opcion;
     do {
         system(CLEAR);
-        cout << "\n\t\t*** Estuido de Metodos de Ordenación ***\n\n"
+        cout << "\n\t\t*** Estudio de Metodos de Ordenación ***\n\n"
              << "\t\t1- Probar los metodos de ordenación" <<  endl
              << "\t\t2- Obtener el caso medio de un metodo" << endl
              << "\t\t3- Comparar metodos" << endl

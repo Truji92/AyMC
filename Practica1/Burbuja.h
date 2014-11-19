@@ -11,7 +11,6 @@
 
 class Burbuja : public Ordenacion {
 public:
-    Burbuja(){}
     void ordenar(int t[], int ini, int fin);
 };
 
