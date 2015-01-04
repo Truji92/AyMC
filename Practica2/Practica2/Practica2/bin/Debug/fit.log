@@ -1,0 +1,196 @@
+
+
+*******************************************************************************
+Fri Jan  2 20:10:07 2015
+
+
+FIT:    data read from "Divide y Vencerás.dat" using 1:2
+        format = x:z
+        #datapoints = 6
+        residuals are weighted equally (unit weight)
+
+function used for fitting: y(x)
+fitted parameters initialized with current variable values
+
+
+
+ Iteration 0
+ WSSR        : 2.63851e+10       delta(WSSR)/WSSR   : 0
+ delta(WSSR) : 0                 limit for stopping : 1e-05
+ lambda	  : 35657.7
+
+initial set of free parameter values
+
+a               = 1
+b               = 1
+c               = 1
+
+After 8 iterations the fit converged.
+final sum of squares of residuals : 0.278216
+rel. change during last iteration : -3.43145e-08
+
+degrees of freedom    (FIT_NDF)                        : 3
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.30453
+variance of residuals (reduced chisquare) = WSSR/ndf   : 0.0927386
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+
+a               = -0.281334        +/- 0.253        (89.94%)
+b               = -0.000126253     +/- 0.00083      (657.4%)
+c               = 0.000140158      +/- 6.193e-05    (44.18%)
+
+
+correlation matrix of the fit parameters:
+
+               a      b      c      
+a               1.000 
+b              -0.757  1.000 
+c               0.737 -0.999  1.000 
+
+
+*******************************************************************************
+Fri Jan  2 20:19:29 2015
+
+
+FIT:    data read from "Exahustiva.dat" using 1:2
+        format = x:z
+        #datapoints = 6
+        residuals are weighted equally (unit weight)
+
+function used for fitting: y(x)
+fitted parameters initialized with current variable values
+
+
+
+ Iteration 0
+ WSSR        : 2.63911e+10       delta(WSSR)/WSSR   : 0
+ delta(WSSR) : 0                 limit for stopping : 1e-05
+ lambda	  : 35657.7
+
+initial set of free parameter values
+
+a               = 1
+b               = 1
+c               = 1
+
+After 8 iterations the fit converged.
+final sum of squares of residuals : 24.629
+rel. change during last iteration : -4.23805e-09
+
+degrees of freedom    (FIT_NDF)                        : 3
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 2.86525
+variance of residuals (reduced chisquare) = WSSR/ndf   : 8.20967
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+
+a               = 5.22687          +/- 2.381        (45.55%)
+b               = -0.0129973       +/- 0.007809     (60.08%)
+c               = 0.000950908      +/- 0.0005827    (61.28%)
+
+
+correlation matrix of the fit parameters:
+
+               a      b      c      
+a               1.000 
+b              -0.757  1.000 
+c               0.737 -0.999  1.000 
+
+
+*******************************************************************************
+Fri Jan  2 20:23:53 2015
+
+
+FIT:    data read from "Exahustiva.dat" using 1:2
+        format = x:z
+        #datapoints = 6
+        residuals are weighted equally (unit weight)
+
+function used for fitting: y(x)
+fitted parameters initialized with current variable values
+
+
+
+ Iteration 0
+ WSSR        : 1.07094e+16       delta(WSSR)/WSSR   : 0
+ delta(WSSR) : 0                 limit for stopping : 1e-05
+ lambda	  : 2.43893e+07
+
+initial set of free parameter values
+
+a               = 1
+b               = 1
+c               = 1
+
+After 11 iterations the fit converged.
+final sum of squares of residuals : 0.00907112
+rel. change during last iteration : -7.67779e-09
+
+degrees of freedom    (FIT_NDF)                        : 3
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.0549882
+variance of residuals (reduced chisquare) = WSSR/ndf   : 0.00302371
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+
+a               = 0.0408143        +/- 0.03844      (94.18%)
+b               = -8.79604e-05     +/- 2.394e-05    (27.22%)
+c               = 1.82972e-08      +/- 2.314e-09    (12.65%)
+
+
+correlation matrix of the fit parameters:
+
+               a      b      c      
+a               1.000 
+b              -0.723  1.000 
+c               0.596 -0.962  1.000 
+
+
+*******************************************************************************
+Fri Jan  2 20:28:02 2015
+
+
+FIT:    data read from "Exahustiva.dat" using 1:2
+        format = x:z
+        #datapoints = 6
+        residuals are weighted equally (unit weight)
+
+function used for fitting: y(x)
+fitted parameters initialized with current variable values
+
+
+
+ Iteration 0
+ WSSR        : 1.07091e+16       delta(WSSR)/WSSR   : 0
+ delta(WSSR) : 0                 limit for stopping : 1e-05
+ lambda	  : 2.43893e+07
+
+initial set of free parameter values
+
+a               = 1
+b               = 1
+c               = 1
+
+After 11 iterations the fit converged.
+final sum of squares of residuals : 1.16317
+rel. change during last iteration : -9.22961e-11
+
+degrees of freedom    (FIT_NDF)                        : 3
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.622673
+variance of residuals (reduced chisquare) = WSSR/ndf   : 0.387722
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+
+a               = -0.190986        +/- 0.4353       (227.9%)
+b               = 0.000184143      +/- 0.0002711    (147.2%)
+c               = 1.12645e-05      +/- 2.62e-08     (0.2326%)
+
+
+correlation matrix of the fit parameters:
+
+               a      b      c      
+a               1.000 
+b              -0.723  1.000 
+c               0.596 -0.962  1.000 

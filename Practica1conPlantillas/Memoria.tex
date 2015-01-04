@@ -1,0 +1,659 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage{times}
+\usepackage{anysize}
+\usepackage{verbatim}
+\usepackage{float}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PARA CODIGO %%%%%%%%%%%%%%
+\usepackage{color}
+\definecolor{gray97}{gray}{.97}
+\definecolor{gray75}{gray}{.75}
+\definecolor{gray45}{gray}{.45}
+
+\usepackage{listings}
+\lstset{ frame=Ltb,
+framerule=0pt,
+aboveskip=0.5cm,
+framextopmargin=3pt,
+framexbottommargin=3pt,
+framexleftmargin=0.4cm,
+framesep=0pt,
+rulesep=.4pt,
+backgroundcolor=\color{gray97},
+rulesepcolor=\color{black},
+%
+stringstyle=\ttfamily,
+showstringspaces = false,
+basicstyle=\small\ttfamily,
+commentstyle=\color{gray45},
+keywordstyle=\bfseries,
+%
+numbers=left,
+numbersep=15pt,
+numberstyle=\tiny,
+numberfirstline = false,
+breaklines=true,
+}
+
+% minimizar fragmentado de listados
+\lstnewenvironment{listing}[1][]
+{\lstset{#1}\pagebreak[0]}{\pagebreak[0]}
+
+\lstdefinestyle{consola}
+{basicstyle=\scriptsize\bf\ttfamily,
+backgroundcolor=\color{gray75},
+}
+
+\lstdefinestyle{C}
+{language=C++,
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PARA CODIGO %%%%%%%%%%%%%%
+
+%% Margenes
+\marginsize{3cm}{2cm}{2cm}{2cm}
+
+%Portada
+\title{\textbf{\huge{Memoria Práctica 1: Análisis de Métodos de Ordenación }}}
+\author{Alejandro Trujillo Caballero}
+\date{18 de Noviembre de 2014}
+
+\usepackage{graphicx}
+\begin{document}
+
+\maketitle
+\thispagestyle{empty}
+\newpage
+
+\tableofcontents
+\newpage
+
+\section{Introducción}
+Los algoritmos de ordenación pretenden reorganizar los elementos de un array de manera que queden ordenados según el criterio que queramos (orden creciente o decreciente para números, orden alfabético para letras o palabras…).\\
+En esta práctica vamos a crear un programa para estudiar y comparar la eficiencia temporal de cinco algoritmos que se utilizan para esta función: ordenación por burbuja,  inserción, shell, MergeSort y QuickSort.
+\section{Análisis Teórico}
+En este apartado se mostrarán los códigos de los algoritmos a estudiar así como su orden de complejidad temporal. Los cálculos detallados se omitirán ya que el objetivo principal de la práctica es comprobar el ajuste de estos órdenes teóricos con la realidad, no el cálculo de órdenes en si mismo.
+
+\subsubsection{Burbuja}
+Código:
+\begin{lstlisting}[style=C]
+void Burbuja(int t[], int ini, int fin) {
+    int i, j;
+    int aux;
+    int size = fin - ini;
+
+    for (i = 0; i < size - 1; i++) {
+        for (j = size - 1; j > i; j--) {
+            if (t[j] < t[j - 1]) {
+                aux = t[j];
+                t[j] = t[j - 1];
+                t[j - 1] = aux;
+            }
+        }
+    }
+}
+\end{lstlisting}
+ \ \\
+En este caso fijandonos en que ejecuta dos bucles for anidados, es fácil ver que harán que para el caso medio el algoritmo sea de orden cuadrático.
+\begin{equation}
+T_{Burbuja}(n) \in O(n^2)
+\end{equation}
+
+
+\subsubsection{Inserción}
+Código:
+
+\begin{lstlisting}[style=C]
+void Insercion(int t[], int ini, int fin) {
+    int size = fin - ini;
+    for (int i = 1; i < size; i++) {
+        int x = t[i];
+        int j = i - 1;
+
+        while (j >= 0 && x < t[j]) {
+            t[j + 1] = t[j];
+            j--;
+        }
+
+        t[j + 1] = x;
+    }
+}
+\end{lstlisting} 
+\ \\
+Para el caso medio, al igual que en el caso anterior, el algoritmo anida dos bucles, por tanto:
+\begin{equation}
+T_{Insercion}(n) \in O(n^2)
+\end{equation}
+
+\subsubsection{Shell}
+Código:
+\begin{lstlisting}[style=C]
+void Shell(int t[], int ini, int fin) {
+    fin--; 
+    int i, j, inc, temp, TAM = fin + 1;
+    for (inc = TAM / 2; inc > 0; inc /= 2) {
+        for (i = inc; i < TAM; i++) {
+            temp = t[i];
+            for (j = i; j >= inc; j -= inc) {
+                if (temp < t[j - inc]) {
+                    t[j] = t[j - inc];
+                } else {
+                    break;
+                }
+            }
+            t[j] = temp;
+        }
+    }
+}
+
+\end{lstlisting} 
+\ \\
+La complejidad temporal de este algoritmo varía en función de la secuencia de incrementos utilizada, para nuestro caso:
+\begin{equation}
+T(n) \in O(n\log(n))
+\end{equation}
+\subsubsection{MergeSort}
+Código:
+\begin{lstlisting}[style=C]
+void mergesort(int *a, int*b, int low, int high) {
+    int pivot;
+    if (low < high) {
+        pivot = (low + high) / 2;
+        mergesort(a, b, low, pivot);
+        mergesort(a, b, pivot + 1, high);
+        merge(a, b, low, pivot, high);
+    }
+}
+
+void merge(int *a, int *b, int low, int pivot, int high) {
+    int h, i, j, k;
+    h = low;
+    i = low;
+    j = pivot + 1;
+
+    while ((h <= pivot)&&(j <= high)) {
+        if (a[h] <= a[j]) {
+            b[i] = a[h];
+            h++;
+        } else {
+            b[i] = a[j];
+            j++;
+        }
+        i++;
+    }
+    if (h > pivot) {
+        for (k = j; k <= high; k++) {
+            b[i] = a[k];
+            i++;
+        }
+    } else {
+        for (k = h; k <= pivot; k++) {
+            b[i] = a[k];
+            i++;
+        }
+    }
+    for (k = low; k <= high; k++) a[k] = b[k];
+}
+\end{lstlisting} 
+\ \\
+Teniendo en cuenta las dos llamadas recursivas de MergeSort y que el método merge necesita 2n pasos, obtenemos la ecuación de recursividad:
+\begin{equation}
+T(n)= 2n + 2T(n/2)
+\end{equation}
+Aplicando el teorema maestro obtenemos:
+\begin{equation}
+T(n) \in O(n\log(n))
+\end{equation}
+\subsubsection{QuickSort}
+Código:
+\begin{lstlisting}[style=C]
+void QuickSort::quicksort(int t[], int ini, int fin) {
+    int pivote;
+    if (ini < fin) {
+        pivote = partition(t, ini, fin);
+        quicksort(t, ini, pivote);
+        quicksort(t, pivote+1, fin);
+    }
+}
+
+int QuickSort::partition(int* t, int p, int r) {
+    int piv = t[p];
+    int i = p-1;
+    int j = r+1;
+    do {
+        do {
+            j--;
+        } while (t[j]>piv);
+        do {
+            i++;
+        }while(t[i]<piv);
+        if (i < j) {
+            int aux = t[i];
+            t[i] = t[j];
+            t[j] = aux;
+        }
+    } while(i < j);
+    return j;
+}
+\end{lstlisting} 
+\ \\
+En este caso, con las llamadas recursivas y teniendo en cuenta que partition necesita n operaciones, la ecuación de recurrencia a la que llegamos es:
+\begin{equation}
+T(n)= n + 2T(n/2)
+\end{equation}
+Aplicando el teorema maestro obtenemos:
+\begin{equation}
+T(n) \in O(n\log(n))
+\end{equation}
+
+\section{Análisis Práctico}
+\subsection{Análisis del problema}
+Para crear el programa, necesitaremos diferentes grupos funcionales diferentes: la implementación de los algoritmos a analizar, la logica de las pruebas, la interfaz gráfica (en este caso salida por consola), elemenos sobre los que ejecutar los algoritmos  y el manejo de archivos y gráficas.
+Para implementar todo esto, utilizaremos:
+
+- Algoritmos a analizar: Una clase abstracta que defina la interfaz de uso, de la que heredarán cada uno de los diferentes algoritmos.
+
+- Lógica de las pruebas: Se implimentará en una clase donde se encontrarán las funciones principales del programa (prueba de los algoritmos, comparaciones...).
+
+- Interfaz gráfica: Se manejara mediante funciones que escriban en la consola los menus necesarios.
+
+- Elementos sobre los que ejecutar los algoritmos: Utilizaremos una clase que nos permita crear vectores con contenidos aleatorios.
+
+- Manejo de archivos y gráficas: Se implementará una clase que unifique todo el sistema del salida de datos a ficheros y creación de representaciones gráficas.
+\subsection{Diseño de la aplicación} 
+\subsubsection{Ordenacion.h}
+\begin{lstlisting}[style=C]
+#ifndef ORDENACION_H
+#define	ORDENACION_H
+
+using namespace std;
+
+class Ordenacion {
+public:
+    /**
+     * Contructor vacio
+     */
+    Ordenacion(){}
+    
+    /**
+     * Destructor
+     */
+    virtual ~Ordenacion(){}
+    
+    /**
+     * Metodo que debera implementar cada clase hija
+     * @param t Vector a ordenar
+     * @param ini posicion del primer elemento
+     * @param fin posicion ultimo elemento
+     */
+    virtual void ordenar(int t[], int ini, int fin) {}
+};
+
+
+#endif	/* ORDENACION_H */
+
+
+\end{lstlisting}
+Clase de la que hereda clada uno de los algoritmos estudiados, el método ordenar sera el que implementen las hijas y será llamado a la hora de realizar las pruebas.
+El código de cada algoritmo es el que se muestra en el análisis teórico por lo que no se mostrará en este apartado.
+\subsubsection{ConjuntoInt.h}
+\begin{lstlisting}[style=C]
+///////////// Declaracion de la clase conjuntoInt ////////////
+
+class ConjuntoInt {
+private:
+    int tamano;
+    int nelementos;
+    int *datos;
+public:
+    ConjuntoInt (int max= 0);
+    ~ConjuntoInt ();
+    void vaciar();
+    void insertar(int n);
+    bool miembro(int n);
+    void ordena(int tam);
+    void ordena();
+    void escribe(int tam);
+    void escribe();
+    void clonar(ConjuntoInt &c);
+    void generaVector ();
+    int* getDatos();
+};
+
+\end{lstlisting}
+
+Esta clase es simplemente una pequeña modificación de la entregada antes de la realización de la práctica para que trabaje con arrays de forma dinámica.
+\subsubsection{TestOrdenacion.h}
+\begin{lstlisting}[style=C]
+
+#ifndef TESTORDENACION_H
+#define	TESTORDENACION_H
+
+using namespace std;
+
+#include <string>
+#include <vector>
+#include "Ordenacion.h"
+
+/**
+ * Struct utilizado para facilitar el manejo de medidas de 
+ * tiempo para cada cantidad de elementos
+ */
+struct Tiempos { 
+    int elementos;
+    double tiempo;
+    Tiempos(){}
+    Tiempos(int elem, double t) {
+        elementos = elem;
+        tiempo = t;
+    }
+};
+
+struct tOrdenacion {
+    int num_pruebas; // Numero de pruebas para un metodo de ordenacion
+    string nombre_metodo; // Nombre del metodo de ordenacion
+    Ordenacion *estrategia; // puntero al tipo de ordenacion a realizar
+};
+
+class TestOrdenacion {
+    vector<tOrdenacion> testMetodos; // contiene todos los metodos a estudiar
+    int num_pruebas_al_comparar;
+    
+    double ordenarArray(int v[],int size,int metodo);
+public:
+    /**
+     * Anade los metodos de ordenacion a probar al vector testMetodos
+     */
+    TestOrdenacion(); 
+    ~TestOrdenacion();
+    
+    /**
+     * Comprueba que los metodos de ordenacion funcionan bien
+     */
+    void comprobarMetodos(); 
+
+    /**
+     * Compara todos los metodos de ordenacion entre si. 
+     * Permite las opciones de crear el fichero de datos y la grafica correspondiente.
+     * met: indice de los metodos de testMetodos a comparar
+     */
+    void compararMetodos(vector<int> met);
+    
+    /**
+     * Estudia un metodo de ordenacion concreto. 
+     * Permite las opciones de crear el fichero de datos y la grafica correspondiente.
+     */
+    void estudiarMetodo(int m); 
+    
+    /**
+     * Facilita la creacion de los menus permitiendo acceder
+     * a los nombres de algoritmos fuera de esta clase
+     * @return vecto con los metodos a analizar
+     */
+    vector<tOrdenacion> getTestMetodos() {
+        return testMetodos;
+    }
+    
+};
+
+#endif	/* TESTORDENACION_H */
+
+
+\end{lstlisting}
+Esta clase maneja todo el sistema de pruebas de la práctica, la explicación detallada de cada método y atributos se puede leer en los comentarios.
+\subsubsection{FicherosYGraficas.h}
+\begin{lstlisting}[style=C]
+#ifndef FICHEROSYGRAFICAS_H
+#define	FICHEROSYGRAFICAS_H
+using namespace std;
+#include <vector>
+#include <iostream>
+#include <fstream>
+#include <cstdlib>
+
+#include "TestOrdenacion.h"
+
+class FicherosYGraficas {
+    static TestOrdenacion *test;
+    
+    static void dibujar(string archivo);
+public:
+    
+    /**
+     * Funcion que debe llamarse antes de utilizar la clase para definir 
+     * la clase TestOrdenacion con la que trabajara y por tanto los nombres 
+     * de los algoritmos que imprimira en archivos y graficas
+     * @param _test Istancia de TestOrdenacion con la que trabajar
+     */
+    static void setTest(TestOrdenacion *_test) {
+        test = _test;
+    }
+    
+    /**
+     * Guarda en un archivo los datos de una prueba
+     * @param T array que contiene tallas y tiempos
+     * @param size tamano de T
+     * @param metodo metodo que se esta analizando
+     */
+    static void GuardarEnArchivo(Tiempos *T, int size, int metodo);
+    /**
+     * Dibuja en una grafica los datos de una prueba
+     * @param T array que contiene tallas y tiempos
+     * @param size tamano de T
+     * @param metodo metodo que se esta analizando
+     */
+    static void GenerarGrafica(Tiempos *T, int size, int metodo);
+
+    
+    /**
+     * Guarda en un archivo los datos de una comparacion
+     * @param T tabla de dos dimensiones con los datos de las pruebas
+     * @param size tamano de T
+     * @param metodos Diferentes metodos que se estan comparando
+     */
+    static void GuardarEnArchivo(Tiempos **T, int size, vector<int> metodos);
+    static void GenerarGrafica(Tiempos **T, int size, vector<int> metodos);
+};
+
+
+#endif	/* FICHEROSYGRAFICAS_H */
+\end{lstlisting}
+Esta clase controla la salida de datos a ficheros y gráficas del programa.
+\subsubsection{main}
+\begin{lstlisting}[style=C]
+#include <iostream>
+#include <cstdlib>
+#include "TestOrdenacion.h"
+
+using namespace std;
+
+#ifdef __linux__
+#define CLEAR "clear"
+#else
+#define CLEAR "cls"
+#endif
+
+
+int Menu() {
+
+    int opcion;
+    do {
+        system(CLEAR);
+        cout << "\n\t\t*** Estudio de Metodos de Ordenacion ***\n\n"
+             << "\t\t1- Probar los metodos de ordenacion" <<  endl
+             << "\t\t2- Obtener el caso medio de un metodo" << endl
+             << "\t\t3- Comparar metodos" << endl
+             << "\t\t0- Salir" << endl
+             << "\t\t--------------------"
+             << "\n\t\t >>> ";
+             cin >> opcion;
+    } while (opcion < 0 || opcion > 3);
+    return opcion;
+}
+
+
+int subMenuCasoMedio(TestOrdenacion &test) {
+    int opcion;
+
+    do{
+        cout << "\n\t\t*** Metodo a estudiar para el caso medio ***" << endl;
+        for (int i = 0; i < test.getTestMetodos().size(); i++)
+            cout << "\t\t"<<i+1<<"- " << test.getTestMetodos()[i].nombre_metodo << endl;
+        
+        cout << "\n\t\t >>> ";
+        cin >> opcion;
+    } while (opcion < 0 || opcion > test.getTestMetodos().size());
+    return opcion - 1;
+}
+
+void subRutinaComparacion(TestOrdenacion &test){
+    vector<int> metodos;
+
+
+
+    system(CLEAR);
+    cout <<  "\n\t\t *** Comparacion de metodos de ordenacion" << endl << endl;
+    for (int i = 0; i < test.getTestMetodos().size(); i++)
+        cout << "\t\t " <<i+1<<"- "<< test.getTestMetodos()[i].nombre_metodo << endl;
+    
+    cout << "\t\t---------------------\n";
+    int aux;
+    int i = 1;
+    do {
+        do {
+            if (i <= 2)
+                cout << "\n\t\t Introduzca metodo" << i << ": ";
+            else
+                cout << "\n\t\t Introduzca metodo" << i << " (o 0 para terminar): ";
+            cin >> aux;
+        } while (aux == 0 && i <= 2);
+        if (aux <= 5 && aux >= 1) {
+            metodos.push_back(aux-1);
+            i++;
+        }
+    } while (aux != 0);
+
+    test.compararMetodos(metodos);
+
+}
+
+
+int main()
+{
+    int opcion;
+    TestOrdenacion test;
+
+    do {
+        opcion = Menu();
+        switch (opcion){
+        case 1:
+            test.comprobarMetodos();
+            break;
+        case 2:
+            test.estudiarMetodo(subMenuCasoMedio(test));
+            break;
+        case 3:
+            subRutinaComparacion(test);
+            break;
+        }
+    } while (opcion != 0);
+
+    return 0;
+}
+
+\end{lstlisting}
+En la función main se realizan las llamadas necesarias a la clase TestOrdenacion para el funcionamiento del programa y se implementan los menús como funciones genéricas.
+\section{Conclusiones} 
+\subsection{Análisis individual de algoritmos}
+\subsubsection{Burbuja}
+\begin{figure}[H]
+\centering
+\includegraphics[scale=1.10]{Burbuja.pdf}
+\caption{Tiempos medios para el algoritmo burbuja}
+\label{}
+\end{figure}
+Podemos ver que las medidas tomadas se ajustan perfectamente a la curva teórica, confirmando que el orden del algoritmo es:
+\begin{equation}
+O(n^2)
+\end{equation}
+\subsubsection{Inserción}
+\begin{figure}[H]
+\centering
+\includegraphics[scale=1.10]{Insercion.pdf}
+\caption{Tiempos medios para el algoritmo inserción}
+\label{}
+\end{figure}
+Podemos ver que las medidas tomadas se ajustan perfectamente a la curva teórica, confirmando que el orden del algoritmo es:
+\begin{equation}
+O(n^2)
+\end{equation}
+\subsubsection{Shell}
+\begin{figure}[H]
+\centering
+\includegraphics[scale=1.10]{Shell.pdf}
+\caption{Tiempos medios para el algoritmo Shell}
+\label{}
+\end{figure}
+Podemos ver que las medidas se ajustan perfectamente a la teoría, confirmando un orden de:
+\begin{equation}
+T(n) \in O(n\log(n))
+\end{equation}
+\subsubsection{MergeSort}
+\begin{figure}[H]
+\centering
+\includegraphics[scale=1.10]{MergeSort.pdf}
+\caption{Tiempos medios para el algoritmo MergeSort}
+\label{}
+\end{figure}
+Una vez más, podemos ver que los datos se ajustan perfectamente a la teoría, confirmando un orden de:
+\begin{equation}
+T(n) \in O(n\log(n))
+\end{equation}
+\subsubsection{QuickSort}
+\begin{figure}[htp]
+\centering
+\includegraphics[scale=1.10]{QuickSort.pdf}
+\caption{Tiempos medios para el algoritmo QuickSort}
+\label{}
+\end{figure}
+Al igual que anteriormente, podemos ver que las medidas se ajustan perfectamente a la teoría, confirmando un orden de:
+\begin{equation}
+T(n) \in O(n\log(n))
+\end{equation}
+\subsection{Comparación entre algoritmos}
+\begin{figure}[H]
+\centering
+\includegraphics[scale=1.10]{GrafComparaciontodos.pdf}
+\caption{Comparación de los cinco algoritmos estudiados}
+\label{}
+\end{figure}
+Tal como podemos ver en la gráfica, el algoritmo de ordenación por burbuja es significativamente más lento que el resto, seguido por el algoritmo de ordenación por inserción. Los tres algoritmos restantes (al observarlos con esta escala) tienen una eficiencia muy parecida, por lo que vamos a compararlos en una gráfica en la que aparezcan unicamente Shell, MergeSort y QuickSort.
+\begin{figure}[H]
+\centering
+\includegraphics[scale=1.10]{GrafComparacion.pdf}
+\caption{Comparación Shell, Merge y Quick}
+\label{}
+\end{figure}
+Como podemos ver, la velocidad de los tres algoritmos es muy similar, pero hay un orden claro entre ellos, QuickSort es el más rápido, sequido por MergeSort y por último Shell.
+\subsection{Análisis conjunto de los resultados}
+En resumen, todos los algoritmos se ajustan individualmente de manera clara a los cálculos teóricos. \\
+Con respecto a la comparación, los dos algoritmos de orden cuadrático (inserción y burbuja) se muestran claramente más lentos que el resto tal y como se esperaba. \\
+En cuanto a los algoritmos Shell, QuicSort y MergeSort:
+
+
+- QuickSort es el más rápido en general pero en su caso peor puede llegar a ser cuadrático por lo que habría que valorar si ese caso puede llegar a darse con frecuencia en el sistema que queramos implementar. 
+
+
+- MergeSort es algo más lento (o mejor dicho, ligeramente menos rápido), y es más estable en el sentido de que su caso peor es del mismo orden que el medio. Sin embargo requiere memoria adicional ya que utiliza un vector auxiliar y no unicamente el que queremos ordenar.
+
+
+-Shell es el más lento de los tres (aunque enormemente más rápido que burbuja o inserción), no requiere memoria adicional y no es recursivo, por lo que es el ideal para entornos con memoria limitada (tanto QuickSort como MergeSort son recursivos por lo que podrian ser un problema en un entorno de este tipo). Por otro lado al depender su eficiencia de la secuencia de incrementos utilizada a la hora de implementarlo puede ser útil en entornos en los cuales tengamos mucha información sobre como serán los vectores que tendrá que ordenar, pudiendo así implementar la secuencia más adecuada y ganando optimización (aunque esto es algo bastante complejo).
+\section{Valoraciones Personales}
+En mi opinión la práctica permite ver de manera clara la importancia de la elección de algoritmos adecuados a la hora de realizar programas de cara a la eficiencia temporal de los mismos. Permite comprobar de manera empírica los cálculos matemáticos sobre la eficiencia teórica de los algoritmos que unicamente vistos sobre papel pueden ser algo confusos.
+
+Por otro lado, creo que la práctica aporta poco comparandola con las prácticas de la asignatura de algorítmica de primero (Sobre todo teniendo en cuenta el tiempo que ocupa y el poco que tenemos en una asignatura cuatrimestral), varios algoritmos (como burbuja, inserción o QuickSort) se estudian en una práctica muy similar.
+
+
+\end{document}
