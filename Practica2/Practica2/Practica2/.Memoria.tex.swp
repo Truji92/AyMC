@@ -80,12 +80,12 @@ backgroundcolor=\color{gray75},
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introducción}
 En esta prática se pretende estudiar la eficiencia temporal de un algoritmo divide y vencerás frente 
-a la solución exahustiva para el mismo problem  a. Para ello se solucionará el problema de encontrar los dos puntos más
+a la solución exahustiva para el mismo problema. Para ello se solucionará el problema de encontrar los dos puntos más
 cercanos en una nube de puntos.
 
-La codificación exahustiva recorrerá cada pareja posible de puntos y calculara la distancia, almacenando la menor encontrada.
+La codificación exahustiva recorrerá cada pareja posible de puntos y calcular1á la distancia, almacenando la menor encontrada.
 
-La codificación divide y vencerás dividirá la nube en cuatro cuadrantes a partir de un punto pibote y volverá a ejecutarse sobre cada cuadrante de manera recursiva hasta encontrar un caso base.
+La codificación divide y vencerás dividirá la nube en cuatro cuadrantes a partir de un punto pivote y volverá a ejecutarse sobre cada cuadrante de manera recursiva hasta encontrar un caso base.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% ANALISIS TEORICO
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -116,15 +116,15 @@ Calculamos el tiempo de ejecución del algoritmo:
 T(n) = A - \sum_{i=1}^{n}{\sum_{j=i}^{n}{B}}
 \]
 
-Siendo A las operaciones que se realizan antes y despues de los bucles for (operaciones de orden constante), y B las que se realizan en el interior del segundo for (también constantes). Desarrollando la expresión:
+Siendo A las operaciones que se realizan antes y después de los bucles for (operaciones de orden constante), y B las que se realizan en el interior del segundo for (también constantes). Desarrollando la expresión:
 
 
 \[
 T(n) = A - B\sum_{i=1}^{n}{(n - i)} = A + B\left(\sum_{í=1}^{n}{n}-\sum_{í=1}^{n}{i}\right) = 
-A + B\left(n^2-\frac{n(1-n)}{2}\right) = A + B\left(\frac{3n^2}{2} - \frac{n}{2}\right)
+A + B\left(n^2-\frac{n(1+n)}{2}\right) = A + B\left(\frac{n^2}{2} - \frac{n}{2}\right)
 \]
 
-En el caso mejor solo entraría en el if una vez y en el caso peor entraría siempre, por lo que para ambos casos A y B  son constantes y obtenemos que el algoritmo es de orden cuadrático:
+En el caso mejor sólo entraría en el if una vez y en el caso peor entraría siempre, por lo que para ambos casos A y B  son constantes y obtenemos que el algoritmo es de orden cuadrático:
 
 \[
 T(n) \in O(n^2)
@@ -220,9 +220,9 @@ Donde:
 \item $T_{fronteras}$ = Coste del cálculo de fronteras entre los cuadrantes.
 \end{itemize}
 
-La función partitión no está especificada en esta memoria ya que su funcionamiento consiste simplemente en tomar el primer punto como pivote y recorrer la nube, asignando cada punto al cuadrante correspondiente en base al pivote. Tenemos por tanto $T_{partition} = n$.
+La función partition no está especificada en esta memoria ya que su funcionamiento consiste simplemente en tomar el primer punto como pivote y recorrer la nube, asignando cada punto al cuadrante correspondiente en base al pivote. Tenemos por tanto $T_{partition} = n$.
 
-En caso de que el pivote elegido no divida los puntos, la función elige uno diferente hasta que si se produce división, sin embargo no vamos a considerarlo a la hora de realizar los cálculos teóricos ya que el orden de la función seguiría siendo lineal y solo serviría para dificultar el desarrollo matemático.
+En caso de que el pivote elegido no divida los puntos, la función elige uno diferente hasta que sí se produce división, sin embargo no vamos a considerarlo a la hora de realizar los cálculos teóricos ya que el orden de la función seguiría siendo lineal y solo serviría para dificultar el desarrollo matemático.
 
 
 En el mejor caso, el algoritmo encontrará las distancia mínima al realizar las llamadas recursivas y esta será suficientemente
@@ -242,9 +242,9 @@ Si aplicamos el teorema maestro\footnote{Presente en el tema 1 de teoría de la 
 a = 4, k = 1, b = 4 \Rightarrow T(n) \in O(n\log{n})
 \]
 
-En el caso peor, podríamos encontrar una nube de puntos distribuida de tal forma (por ejemplo cuatro puntos formando un cuadrado) que el algoritmo entre en un bucle sin salida ya que el algoritmo partition devolvería un punto en cada cuadrante, no se obtendría distancia mínima válida de la primera parte del algoritmo y el identificar las fronteras los cuatro puntos serían considerados frontera y volvería a realizarse exactamente la misma llamada al algoritmo, entrando en un bucle infinito.
+En el caso peor, podríamos encontrar una nube de puntos distribuida de tal forma (por ejemplo cuatro puntos formando un cuadrado) que el algoritmo entre en un bucle sin salida ya que el algoritmo partition devolvería un punto en cada cuadrante, no se obtendría distancia mínima válida de la primera parte del algoritmo y al identificar las fronteras los cuatro puntos serían considerados frontera y volvería a realizarse exactamente la misma llamada al algoritmo, entrando en un bucle infinito.
 
-Para evitar esto se ha introducido un caso base diferente en el algoritmo, consistente en que para nubes menores de 60 puntos se realiza en cálculo exahustivo de la distancia. ¿Por qué es esto una mejora? En primer lugar, para valores pequeños de n, el algoritmo exahustivo es aproximadamente igual de rápido que el divide y vencerás pero enormemente más ligero en memoria y en segundo lugar, la pila de llamadas recursivas es limitada y para nubes muy grandes este caso base con cálculo exahustivo reduce enormemente la carga en esa pila, permitiendo trabajar con nubes mucho mayores sin obtener desbordamientos.
+Para evitar esto se ha introducido un caso base diferente en el algoritmo, consistente en que para nubes menores de 60 puntos se realiza eelcálculo exahustivo de la distancia. ¿Por qué es esto una mejora? En primer lugar, para valores pequeños de n, el algoritmo exahustivo es aproximadamente igual de rápido que el divide y vencerás pero enormemente más ligero en memoria y en segundo lugar, la pila de llamadas recursivas es limitada y para nubes muy grandes este caso base con cálculo exahustivo reduce enormemente la carga en esa pila, permitiendo trabajar con nubes mucho mayores sin obtener desbordamientos.
 
 Por otra parte, modificamos el caso peor que anteriormente nos llevaba a un bucle infinito para que ahora se ejecute también en tiempo logarítmico. 
 
@@ -253,12 +253,12 @@ Podemos hacer una aproximación del tiempo medio de ejecución del algoritmo sup
 \[
 T(n) = \left\{ \begin{array}{lcc}
              n^2 &   si  & n \leq 60 \\
-             \\ n + 4T(n/4) + 2n + 2T(n/4) + A =  3n + 6T(n/4) &  si & n > 2 
+             \\ n + 4T(n/4) + 2n + 2T(n/4) + A =  3n + 6T(n/4) &  si & n > 60 
              \end{array}
    \right.
 \]
 
-Aunque $n^2$ no es una costante, podemos aplicar el teorema maestro ya que sabemos que en nuestro caso esta acotada superiormente por $60^2$ que sí lo es y obtenemos:
+Aunque $n^2$ no es una costante, podemos aplicar el teorema maestro ya que sabemos que en nuestro caso está acotada superiormente por $60^2$ que sí lo es y obtenemos:
 
 \[
 a = 6, k = 1, b = 4 \Rightarrow a>b^k \Rightarrow T(n) \in O(n^{\log_{4}{6}}) = O(n^{1.2925})
@@ -310,13 +310,17 @@ Podemos ver también en la figura \ref{dyvaprox} que se ajusta de forma razonabl
 
 En la figura \ref{comp} se puede confirmar de forma evidente el objetivo de la práctica, al dibujar en la misma gráfica ambas ejecuciones se aprecia como el algoritmo divide y venceras es tremendamente más rápido que el exahustivo, y sobre todo, como aumenta la diferencia al aumentar el tamaño de los datos.
 
-Para evidenciar aún más la diferencia se han buscado para que tamaños de la nube el algoritmo tarda entre 2 y 3 minutos:
+Para evidenciar aún más la diferencia se han buscado para qué tamaños de la nube el algoritmo tarda entre 2 y 3 minutos:
 
 \begin{itemize}
 \item Para 110000 puntos, el agoritmo exahustivo tarda 2,3 minutos, el divide y vencerás 0,2 segundos.
-\item 
+\item Para 25 millones, el algoritmo divide y vencerás tarda 2,5 minutos, el exahustivo no se ha ejecutado para esa cantidad de puntos.
+\item Para 50 millones, el algoritmo divide y vencerás tarda 5,9 minutos.
 \end{itemize}
 
+\section{Conclusiones y mejoras}
+El algoritmo divide y vencerás es notoriamente más rapido que el exahustivo tal y como se esperaba, sin embargo necesita mucha más memoria tanto para la pila como para datos y arrays auxiliares en cada llamada. 
 
+Como posibles mejoras, estaría bien encontrar alguna forma de controlar el problema de los bucles infinitos sin recurrir a exahustivo o calcular el valor óptimo del valor de caso base (el actual de 60 es algo arbitrario). 
 
 \end{document}

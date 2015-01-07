@@ -15,15 +15,13 @@ namespace Practica2 {
 			Thread hilo = new Thread (main.principal, 1 * 1024 * 1024 * 1024); //1gb stack
 			hilo.Start ();
 			**************************************/
-			HiloMain main = new HiloMain ();
-			Thread hilo = new Thread (main.principal, 1 * 1024 * 1024 * 1024); //1gb stack
-			hilo.Start ();
+
 			/*************************************
 			* PARA GRAFICAS
 			* ***********************************/
-			//HiloMain main = new HiloMain ();
-			//Thread hilo = new Thread (main.generaGrafica, 1 * 1024 * 1024 * 1024);
-			//hilo.Start ();
+			HiloMain main = new HiloMain ();
+			Thread hilo = new Thread (main.generaGrafica, 1 * 1024 * 1024 * 1024);
+			hilo.Start ();
 		}
 	}
 
@@ -33,7 +31,7 @@ namespace Practica2 {
 			DistanciaMinima distMinima = new DistanciaMinima ();
 
 			Punto[] puntos;
-			puntos = new Punto[10000000];
+			puntos = new Punto[1000000];
 
 			TimeSpan start;
 			TimeSpan stop;
@@ -68,7 +66,7 @@ namespace Practica2 {
 				dist = distMinima.DyV_cuatroCuadrantes (puntos);
 				stop = new TimeSpan (DateTime.Now.Ticks);
 				Console.WriteLine ("La distancia minima con DyV es: {0:F1}", dist);
-				Console.WriteLine ("Tiempo: {0:F1} segundos", stop.Subtract (start).TotalMilliseconds / 1000);
+				Console.WriteLine ("Tiempo: {0:F1} minutos", stop.Subtract (start).TotalMilliseconds / 1000 / 60);
 			} catch (Exception e) {
 				Console.WriteLine (e.Message);
 			}
