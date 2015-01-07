@@ -194,3 +194,149 @@ correlation matrix of the fit parameters:
 a               1.000 
 b              -0.723  1.000 
 c               0.596 -0.962  1.000 
+
+
+*******************************************************************************
+Sun Jan  4 15:06:03 2015
+
+
+FIT:    data read from "Divide y Vencerás.dat" using 1:2
+        format = x:z
+        #datapoints = 6
+        residuals are weighted equally (unit weight)
+
+function used for fitting: y(x)
+fitted parameters initialized with current variable values
+
+
+
+*******************************************************************************
+Sun Jan  4 15:07:38 2015
+
+
+FIT:    data read from "Divide y Vencerás.dat" using 1:2
+        format = x:z
+        #datapoints = 6
+        residuals are weighted equally (unit weight)
+
+function used for fitting: y(x)
+fitted parameters initialized with current variable values
+
+
+
+ Iteration 0
+ WSSR        : 1.34846e+08       delta(WSSR)/WSSR   : 0
+ delta(WSSR) : 0                 limit for stopping : 1e-05
+ lambda	  : 24754.4
+
+initial set of free parameter values
+
+a               = 1
+b               = 1
+c               = 1
+
+After 10 iterations the fit converged.
+final sum of squares of residuals : 36.4969
+rel. change during last iteration : -2.0947e-06
+
+degrees of freedom    (FIT_NDF)                        : 3
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 3.48793
+variance of residuals (reduced chisquare) = WSSR/ndf   : 12.1656
+
+BREAK:          Singular matrix in Invert_RtR
+
+
+
+*******************************************************************************
+Sun Jan  4 15:08:08 2015
+
+
+FIT:    data read from "Divide y Vencerás.dat" using 1:2
+        format = x:z
+        #datapoints = 6
+        residuals are weighted equally (unit weight)
+
+function used for fitting: y(x)
+fitted parameters initialized with current variable values
+
+
+
+ Iteration 0
+ WSSR        : 1.34846e+08       delta(WSSR)/WSSR   : 0
+ delta(WSSR) : 0                 limit for stopping : 1e-05
+ lambda	  : 30317.8
+
+initial set of free parameter values
+
+a               = 1
+b               = 1
+
+After 10 iterations the fit converged.
+final sum of squares of residuals : 36.4969
+rel. change during last iteration : -2.31538e-06
+
+degrees of freedom    (FIT_NDF)                        : 4
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 3.02064
+variance of residuals (reduced chisquare) = WSSR/ndf   : 9.12424
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+
+a               = -7.06923         +/- 2.336        (33.05%)
+b               = 0.329436         +/- 0.02072      (6.29%)
+
+
+correlation matrix of the fit parameters:
+
+               a      b      
+a               1.000 
+b              -0.849  1.000 
+
+
+*******************************************************************************
+Sun Jan  4 15:08:54 2015
+
+
+FIT:    data read from "Divide y Vencerás.dat" using 1:2
+        format = x:z
+        #datapoints = 6
+        residuals are weighted equally (unit weight)
+
+function used for fitting: y(x)
+fitted parameters initialized with current variable values
+
+
+
+ Iteration 0
+ WSSR        : 1.34846e+08       delta(WSSR)/WSSR   : 0
+ delta(WSSR) : 0                 limit for stopping : 1e-05
+ lambda	  : 24905.7
+
+initial set of free parameter values
+
+a               = 1
+b               = 1
+c               = 1
+
+After 443 iterations the fit converged.
+final sum of squares of residuals : 0.301104
+rel. change during last iteration : -2.22289e-09
+
+degrees of freedom    (FIT_NDF)                        : 3
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.316809
+variance of residuals (reduced chisquare) = WSSR/ndf   : 0.100368
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+
+a               = -0.329118        +/- 0.2448       (74.39%)
+b               = 1.11518          +/- 0.0578       (5.183%)
+c               = 0.00060233       +/- 0.0003244    (53.86%)
+
+
+correlation matrix of the fit parameters:
+
+               a      b      c      
+a               1.000 
+b               0.710  1.000 
+c              -0.728 -0.999  1.000 

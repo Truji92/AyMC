@@ -3,8 +3,8 @@
   <MonoDevelop.Ide.Workbench ActiveDocument="Practica2/DistanciaMinima.cs">
     <Files>
       <File FileName="Practica2/Punto.cs" Line="1" Column="1" />
-      <File FileName="Practica2/Program.cs" Line="9" Column="10" />
-      <File FileName="Practica2/DistanciaMinima.cs" Line="148" Column="37" />
+      <File FileName="Practica2/Program.cs" Line="1" Column="1" />
+      <File FileName="Practica2/DistanciaMinima.cs" Line="40" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
