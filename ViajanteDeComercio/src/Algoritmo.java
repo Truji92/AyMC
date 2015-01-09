@@ -16,6 +16,8 @@ class Algoritmo {
     private int solucion[]; //Solucion final
     private int coste_solucion; //Coste de la solucion final
     private int n; //Dimension del dataset
+    
+    protected long Tini, Tfin, tiempo;
 
     public Algoritmo(File f) {
         fich = f;
@@ -175,6 +177,10 @@ class Algoritmo {
 
     public void setSolucion(int[] solucion) {
         this.solucion = solucion;
+    }
+    
+    public int[][] getCostes_table() {
+        return costes;
     }
 
 }

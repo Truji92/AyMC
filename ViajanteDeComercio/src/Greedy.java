@@ -32,6 +32,7 @@ class Greedy extends Algoritmo {
     //Metodo principal de ejecucion
     @Override
     public void start() {
+        Tini = System.currentTimeMillis();
         int i;
         int primerInicial = seleccionNodoInicial();
         int inicial = 0;
@@ -57,6 +58,8 @@ class Greedy extends Algoritmo {
         }
         //Algoritmo Voraz
         super.setCoste_solucion(super.getCoste_solucion() + super.getCostes(inicial, 0));
+        Tfin = System.currentTimeMillis();
+        tiempo = Tfin - Tini;
         // coste al nodo inicial
     }
     

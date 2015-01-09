@@ -40,6 +40,7 @@ class MyFrame extends Frame {
         lbl4.setBackground(Color.WHITE);
         ch1 = new Choice();
         ch2 = new Choice();
+        ch1.add("Berlin52Reducido");
         ch1.add("berlin52");
         ch1.add("ch150");
         ch1.add("d567");
@@ -82,14 +83,17 @@ class MyFrame extends Frame {
             File fichero = new File("");
             switch (i1) {
                 case 0:
+                    fichero = new File("berlin52lim.tsp");
+                    break;
+                case 1:
                     //ch130.tsp
                     fichero = new File("berlin52.tsp");
                     break;
-                case 1:
+                case 2:
                     //a280.tsp
                     fichero = new File("ch150.tsp");
                     break;
-                case 2:
+                case 3:
                     //p654.tsp
                     fichero = new File("d657.tsp");
                     break;
@@ -103,6 +107,7 @@ class MyFrame extends Frame {
                     gr.start();
                     txtarea_results.append("La soluci�n es " + gr.getSolucion());
                     txtarea_results.append("\ny el coste " + gr.getCoste());
+                    txtarea_results.append("\n en un tiempo de " + gr.tiempo + " ms");
                     lbl4.setText("");
                     break;
                 case 1:
@@ -113,6 +118,7 @@ class MyFrame extends Frame {
                     objsh.start();
                     txtarea_results.append("La soluci�n es " + objsh.getSolucion());
                     txtarea_results.append("\ny el coste " + objsh.getCoste());
+                    txtarea_results.append("\n en un tiempo de " + objsh.tiempo / 1000  + " segundos");
                     lbl4.setText("");
                     break;
 
